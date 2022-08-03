@@ -59,7 +59,27 @@ export default{
         ];
     },
     //função que pega um filme expecifico
-    
+    getMovieInfo: async (movieId, type) => {
+        let info = {};
+
+        if(movieId) {
+           switch(type) {
+            case 'movie':
+                info = await basicFetch(`/movie/${movieId}?language=pt-BR&api_key=bcd8b9d64c43eb3d1cb7c7aeb914525a`);
+
+            break;
+            case 'tv':
+                info = await basicFetch(`/tv/${movieId}?language=pt-BR&api_key=bcd8b9d64c43eb3d1cb7c7aeb914525a`);
+            break;
+            default:
+                info = null;
+            break;
+           }
+        }
+
+
+        return info;
+    }
 
 
 }
