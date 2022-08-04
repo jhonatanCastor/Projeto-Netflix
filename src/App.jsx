@@ -3,12 +3,13 @@ import './App.css';
 import Tmdb from "./Tmdb.jsx"
 import MovieRow from "./componentes/MovieRow.jsx";
 import FeaturedMovie from "./componentes/FeaturedMovie.jsx";
-import Header from "./componentes/Header";
+import Header from "./componentes/Header.jsx";
 
 export default () => {
 
    const [movieList, setMovieList] = useState([]);
    const [featuredDate, setFeaturedDate] = useState(null);
+   const [blankHeader, setBlankHeader] = useState(false);
 
   useEffect(()=>{
     const loadAll = async () => {
@@ -27,10 +28,27 @@ export default () => {
     loadAll();
   }, []);
 
+  useEffect(()=>{
+    const scrollListener = () => {
+      if(window.scrollY > 10){
+        setBlankHeader(true);
+      }else{
+        setBlankHeader(false);
+      }
+
+    }
+
+    window.addEventListener('scroll', scrollListener);
+
+    return () =>{
+      window.addEventListener('scroll', scrollListener);
+    }
+  }, []);
+
   return(
     <div className="page">
 
-      <Header />
+      <Header blank={blankHeader} />
 
       {featuredDate &&
         <FeaturedMovie item={featuredDate} />
@@ -41,6 +59,17 @@ export default () => {
          <MovieRow key={key} title={item.title} items={item.items}/>
         ))}
       </section>
+
+      <footer>
+        feito com <span role='img' aria-label="coração">Coração</span>
+        <p>
+             Direito de imagem para Netflix
+        </p>
+        <p>
+            Dados pego da themoviedb.org
+        </p>
+        
+      </footer>
     </div>
   );
 }
