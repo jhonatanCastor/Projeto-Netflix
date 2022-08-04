@@ -3,8 +3,14 @@ import './FeaturedMovie.css'
 
 export default ({item}) => {
     console.log(item)
+
+   let firsDate = new Date(item.first_air_date);
+   let genres = [];
+   for(let i in item.genres) {
+      genres.push( item.genres[i].name );
+   }
+
    return (
-       <body className='body'>
          <section className='featured' style={{
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -15,12 +21,17 @@ export default ({item}) => {
                 <div className='featured--name'>{item.orinal_name}</div>
                 <div className='featured--info'>
                     <div className='featured--points'>{item.vote_average} pontos</div>
-                    <div  className='featured--year'>2000</div>
-                    
+                    <div  className='featured--year'>{firsDate.getFullYear()}</div>
+                    <div className='featured--seasons'>{item.number_of_seasons} Temporadas{item.number_of_seasons !== 1 ? 's' : '' }</div>
                 </div>
+                <div className='featured--description'>{item.overview}</div>
+                <div className='featured--buttons'>
+                    <a href={`/watch/${item.id}`} className="featured--watchbutton">Assistir</a>
+                    <a href={`/list/add/${item.id}`} className="featured--mylistbutton">+ Minha Lista</a>
+                </div>
+                <div className='featured--genres'><strong>Gêneros:</strong> {genres.join(', ')}</div>
             </div>
            </div>
         </section>
-       </body>
    );
 }

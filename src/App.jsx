@@ -3,6 +3,7 @@ import './App.css';
 import Tmdb from "./Tmdb.jsx"
 import MovieRow from "./componentes/MovieRow.jsx";
 import FeaturedMovie from "./componentes/FeaturedMovie.jsx";
+import Header from "./componentes/Header";
 
 export default () => {
 
@@ -28,6 +29,8 @@ export default () => {
 
   return(
     <div className="page">
+
+      <Header />
 
       {featuredDate &&
         <FeaturedMovie item={featuredDate} />
