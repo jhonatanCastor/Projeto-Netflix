@@ -4,6 +4,8 @@ import Tmdb from "./Tmdb.jsx"
 import MovieRow from "./componentes/MovieRow.jsx";
 import FeaturedMovie from "./componentes/FeaturedMovie.jsx";
 import Header from "./componentes/Header.jsx";
+import logon from "./componentes/Img/Netflix-loading.gif";
+
 
 export default () => {
 
@@ -68,8 +70,12 @@ export default () => {
         <p>
             Dados pego da themoviedb.org
         </p>
-        
       </footer>
+      {movieList.length <= 0 &&
+        <div className="loading">
+          <img src={logon}/>
+        </div>
+      }
     </div>
   );
 }

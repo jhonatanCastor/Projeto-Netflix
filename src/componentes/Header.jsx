@@ -1,5 +1,6 @@
 import React from "react";
 import './Header.css';
+import logo from './Img/Logonet.png'
 
 const net = ''
 
@@ -8,7 +9,7 @@ export default ({blank}) => {
     <header className={blank ? 'blank' : ''}>
         <div className="header--logo">
             <a href="/">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Logo_Netflix.png" alt="Netflix"/>
+                <img src={logo} alt="Netflix"/>
             </a>
         </div>
         <div className="header--user">
